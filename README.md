@@ -1,6 +1,6 @@
 # Laravel5.2-Uploadify
 Laravel5.2-结合Uploadify插件实现无刷新上传图片功能
-##完整实例demo ，注意（这里用了文档两个方法，一是buttonText属性修改文字，二是onUploadSuccess成功上传返回，）
+## 完整实例demo ，注意（这里用了文档两个方法，一是、buttonText属性修改文字，二是、onUploadSuccess成功上传返回，）
 ```html
 <script src="{{asset('resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
