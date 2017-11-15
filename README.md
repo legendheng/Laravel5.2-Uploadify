@@ -1,6 +1,6 @@
 # Laravel5.2-Uploadify
 Laravel5.2-结合Uploadify插件实现无刷新上传图片功能
-## 完整实例demo ，注意（这里用了文档两个方法，一是、buttonText属性修改文字，二是、onUploadSuccess成功上传返回，）
+## 完整实例demo ，注意（这里更改了文档三个方法，1、buttonText属性修改文字，2、onUploadSuccess成功上传返回，3、uploader上传地址）
 ```html
 <script src="{{asset('resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
@@ -30,15 +30,11 @@ Laravel5.2-结合Uploadify插件实现无刷新上传图片功能
 <script src="{{asset('resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
 ```
-### 第三步、使用Uploadify的uploader属性编辑提交方法
-```php
-'uploader' : "{{url('admin/upload')}}"
-```
-### 第四步、新建一条路由，注意这里要用post或者any方法（坑过）
+### 第三步、新建一条路由，注意这里要用post或者any方法（坑过）
 ```php
 Route::post('upload','TestController@upload');//图片上传路由
 ```
-### 第五步、编写控制器TestController的upload方法
+### 第四步、编写控制器TestController的upload方法
 ```php
 public function upload(){
         $input=Input::file('Filedata');//只获取Filedata字段的内容，这个Filedata是文件上传有的
@@ -49,6 +45,26 @@ public function upload(){
            return $filename;
         }
     }
+```
+### 第五步、前端编写jq提交方法
+```javascript
+<script type="text/javascript">
+  <?php $timestamp = time();?>
+  $(function() {
+      $('#file_upload').uploadify({
+          'buttonText' : '图片上传',
+          'formData'     : {
+              'timestamp' : '<?php echo $timestamp;?>',
+              '_token'     : "{{csrf_token()}}"
+          },
+          'swf'      : '{{asset('resources/org/uploadify/uploadify.swf')}}',
+          'uploader' : "{{url('admin/upload')}}",
+          'onUploadSuccess' : function(file, data, response) {
+              $('#art_thumb_img').attr('src','../../public/uploads/'+data);   //上图片后马上显示  
+          }
+      });
+  });
+</script>
 ```
 ### 第六步、前端编写获取返回图片html+jq
 ```html
