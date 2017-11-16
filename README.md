@@ -6,6 +6,7 @@ Laravel5.2-结合Uploadify插件实现无刷新上传图片功能
 * uploader上传地址
 * _token该框架用post方法就需要
 ```html
+<script type="text/javascript" src="{{asset('resources/views/admin/static/lib/jquery/1.9.1/jquery.min.js')}}"></script>
 <script src="{{asset('resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
 <input id="file_upload" name="file_upload" type="file" multiple="true">
