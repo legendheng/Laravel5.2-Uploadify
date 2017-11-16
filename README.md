@@ -39,7 +39,7 @@ Laravel5.2-结合Uploadify插件实现无刷新上传图片功能
 ```php
 Route::post('upload','TestController@upload');//图片上传路由
 ```
-### 第四步、编写控制器TestController的upload方法
+### 第四步、编写控制器TestController的upload方法，注意这里要引入Input类
 ```php
 public function upload(){
         $input=Input::file('Filedata');//只获取Filedata字段的内容，这个Filedata是文件上传有的
